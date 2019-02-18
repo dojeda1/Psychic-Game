@@ -11,14 +11,37 @@
 //     }
 // }
 
+
+
+
+function compNum() {
+    return Math.floor(Math.random() * 26) + 65;
+}
+
+var compLetter = String.fromCharCode(compNum());
+
+var compFinal = compLetter.toLowerCase();
+
+console.log(compLetter);
+console.log(compFinal);
+
 document.addEventListener("keyup", checkKeyPress);
+
 
 function checkKeyPress(key) {
 
     var keyPress = event.key.toLowerCase();
 
+
     if (key.keyCode >= "65" && key.keyCode <= "90") {
-        console.log(keyPress);
+        console.log("Player Guess: " + keyPress);
+
+        if (keyPress === compFinal) {
+            console.log("the same")
+        } else {
+            console.log("nope")
+        }
+
     } else {
         console.log("invalid key")
     }
