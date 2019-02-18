@@ -19,12 +19,15 @@ function compNum() {
 
 }
 
+
 var compLetter = String.fromCharCode(compNum());
 
 var compFinal = compLetter.toLowerCase();
 
-console.log(compLetter);
-console.log(compFinal);
+
+console.log("Computer Letter: " + compFinal);
+
+
 
 
 document.addEventListener("keyup", checkKeyPress);
@@ -47,6 +50,15 @@ function checkKeyPress(key) {
             document.getElementById("guessCount").innerHTML = guessesLeft;
             document.getElementById("guessList").innerHTML = "";
 
+
+
+            compLetter = String.fromCharCode(compNum());
+
+            compFinal = compLetter.toLowerCase();
+
+            console.log("Computer Letter: " + compFinal);
+
+
         } else {
 
             if (guessesLeft > 1) {
@@ -62,6 +74,12 @@ function checkKeyPress(key) {
                 document.getElementById("lossCount").innerHTML = losses;
                 document.getElementById("guessCount").innerHTML = guessesLeft;
                 document.getElementById("guessList").innerHTML = "";
+
+                compLetter = String.fromCharCode(compNum());
+
+                compFinal = compLetter.toLowerCase();
+
+                console.log("Computer Letter: " + compFinal);
 
             }
         }
