@@ -1,3 +1,5 @@
+// set beginning variables
+
 var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
@@ -6,38 +8,23 @@ document.getElementById("winCount").innerHTML = wins;
 document.getElementById("lossCount").innerHTML = losses;
 document.getElementById("guessCount").innerHTML = guessesLeft;
 
-
-
-
-
 // computer chooses random letter
-
 
 function compNum() {
     return Math.floor(Math.random() * 26) + 65;
-
-
 }
-
 
 var compLetter = String.fromCharCode(compNum());
 
 var compFinal = compLetter.toLowerCase();
 
-
-console.log("Computer Letter: " + compFinal);
-
-
-
+// only alphabetic keys register
 
 document.addEventListener("keyup", checkKeyPress);
-
-// only alphabetic keys register
 
 function checkKeyPress(key) {
 
     var keyPress = event.key.toLowerCase();
-
 
     if (key.keyCode >= "65" && key.keyCode <= "90") {
         console.log("Player Guess: " + keyPress);
@@ -50,14 +37,11 @@ function checkKeyPress(key) {
             document.getElementById("guessCount").innerHTML = guessesLeft;
             document.getElementById("guessList").innerHTML = "";
 
-
+            document.getElementById("previousLetter").innerHTML = "Correct! It was <span class='text-success font-weight-bold text-uppercase'>" + compFinal + "</span>.";
 
             compLetter = String.fromCharCode(compNum());
 
             compFinal = compLetter.toLowerCase();
-
-            console.log("Computer Letter: " + compFinal);
-
 
         } else {
 
@@ -75,11 +59,11 @@ function checkKeyPress(key) {
                 document.getElementById("guessCount").innerHTML = guessesLeft;
                 document.getElementById("guessList").innerHTML = "";
 
+                document.getElementById("previousLetter").innerHTML = "Wrong! It was <span class='text-danger font-weight-bold text-uppercase'>" + compFinal + "</span>.";
+
                 compLetter = String.fromCharCode(compNum());
 
                 compFinal = compLetter.toLowerCase();
-
-                console.log("Computer Letter: " + compFinal);
 
             }
         }
