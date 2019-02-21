@@ -3,6 +3,7 @@
 var wins = 0;
 var losses = 0;
 var guessesLeft = 10;
+var allGuesses = [];
 
 document.getElementById("winCount").innerHTML = wins;
 document.getElementById("lossCount").innerHTML = losses;
@@ -29,43 +30,55 @@ function checkKeyPress(key) {
     if (key.keyCode >= "65" && key.keyCode <= "90") {
         console.log("Player Guess: " + keyPress);
 
-        if (keyPress === compFinal) {
-            console.log("the same");
-            wins++;
-            document.getElementById("winCount").innerHTML = wins;
-            guessesLeft = 10;
-            document.getElementById("guessCount").innerHTML = guessesLeft;
-            document.getElementById("guessList").innerHTML = "";
+        if (allGuesses.indexOf(keyPress) === -1) {
 
-            document.getElementById("previousLetter").innerHTML = "Correct! It was <span class='text-success font-weight-bold text-uppercase'>" + compFinal + "</span>.";
+            allGuesses.push(keyPress);
+            console.log(allGuesses);
 
-            compLetter = String.fromCharCode(compNum());
-
-            compFinal = compLetter.toLowerCase();
-
-        } else {
-
-            if (guessesLeft > 1) {
-                console.log("nope");
-                guessesLeft--;
-                document.getElementById("guessCount").innerHTML = guessesLeft;
-                document.getElementById("guessList").innerHTML = document.getElementById("guessList").innerHTML + keyPress + " ";
-
-            } else {
-                console.log("you lose")
+            if (keyPress === compFinal) {
+                console.log("the same");
+                wins++;
+                allGuesses = [];
+                document.getElementById("winCount").innerHTML = wins;
                 guessesLeft = 10;
-                losses++;
-                document.getElementById("lossCount").innerHTML = losses;
                 document.getElementById("guessCount").innerHTML = guessesLeft;
                 document.getElementById("guessList").innerHTML = "";
 
-                document.getElementById("previousLetter").innerHTML = "Wrong! It was <span class='text-danger font-weight-bold text-uppercase'>" + compFinal + "</span>.";
+                document.getElementById("previousLetter").innerHTML = "Correct! It was <span class='text-success font-weight-bold text-uppercase'>" + compFinal + "</span>.";
 
                 compLetter = String.fromCharCode(compNum());
 
                 compFinal = compLetter.toLowerCase();
 
+            } else {
+
+                if (guessesLeft > 1) {
+                    console.log("nope");
+                    guessesLeft--;
+                    document.getElementById("guessCount").innerHTML = guessesLeft;
+                    document.getElementById("guessList").innerHTML = document.getElementById("guessList").innerHTML + keyPress + " ";
+
+                } else {
+                    console.log("you lose")
+                    guessesLeft = 10;
+                    losses++;
+                    allGuesses = [];
+                    document.getElementById("lossCount").innerHTML = losses;
+                    document.getElementById("guessCount").innerHTML = guessesLeft;
+                    document.getElementById("guessList").innerHTML = "";
+
+                    document.getElementById("previousLetter").innerHTML = "Wrong! It was <span class='text-danger font-weight-bold text-uppercase'>" + compFinal + "</span>.";
+
+                    compLetter = String.fromCharCode(compNum());
+
+                    compFinal = compLetter.toLowerCase();
+
+                }
             }
+
+        } else {
+
+            console.log("duplicate letter")
         }
 
     } else {
