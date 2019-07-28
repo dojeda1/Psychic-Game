@@ -6,6 +6,8 @@ When the game begins, a random letter will be chosen by the app, the user has 10
 
   **Visit Web App [Here!](https://dojeda1.github.io/Psychic-Game/)**
 
+![Web App Image](./demo.png)
+
 ### Technologies used
 
 * HTML
